@@ -61,6 +61,7 @@ agentic-workspace-seed/
 - **Instant Testability:** CI pipeline enforces automated testing from Day 1
 - **Auto-Builds:** Every commit triggers build verification via GitHub Actions
 - **Universal Interface:** Makefile provides consistent commands across all tech stacks
+- **No-Bloat Policy:** Speed of iteration over enterprise safety - no security scanners, SAST tools, or compliance workflows
 
 ---
 
@@ -103,6 +104,7 @@ agentic-workspace-seed/
 - **Instant Testability:** Every commit is automatically tested via CI
 - **Universal Interface:** `make setup/test/build/run` works regardless of tech stack
 - **One-Shot Execution:** `make run` always launches the app without manual setup
+- **No-Bloat:** Speed and iteration over enterprise compliance - keep it simple and fast
 
 ### Current Constraints
 - No specific project requirements defined yet

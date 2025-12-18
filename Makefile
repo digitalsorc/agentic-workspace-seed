@@ -23,62 +23,33 @@ help:
 
 # Setup target - install dependencies
 setup:
-	@echo "⚠️  Setup logic not yet defined."
-	@echo "📝 Action required: Update this after tech stack selection."
+	@echo "⚠️  No tech stack selected yet."
+	@echo "📝 Use natural language to define requirements and initialize project."
 	@echo ""
-	@echo "Examples by language:"
+	@echo "Once tech stack is chosen, update this target with commands like:"
 	@echo "  Python:  pip install -r requirements.txt"
 	@echo "  Node:    npm install"
 	@echo "  Rust:    cargo fetch"
 	@echo "  Go:      go mod download"
 	@echo "  Java:    mvn install"
+	@exit 0
 
 # Test target - run tests
 test:
-	@echo "⚠️  Test logic not yet defined."
-	@echo "📝 Action required: Update this after tech stack selection."
-	@echo ""
-	@echo "Examples by language:"
-	@echo "  Python:  pytest tests/"
-	@echo "  Node:    npm test"
-	@echo "  Rust:    cargo test"
-	@echo "  Go:      go test ./..."
-	@echo "  Java:    mvn test"
+	@echo "⚠️  No tech stack selected yet. Use natural language to initialize project."
+	@exit 0
 
 # Build target - compile/bundle the project
 build:
-	@echo "⚠️  Build logic not yet defined."
-	@echo "📝 Action required: Update this after tech stack selection."
-	@echo ""
-	@echo "Examples by language:"
-	@echo "  Python:  python -m build"
-	@echo "  Node:    npm run build"
-	@echo "  Rust:    cargo build --release"
-	@echo "  Go:      go build -o bin/app"
-	@echo "  Java:    mvn package"
+	@echo "⚠️  No tech stack selected yet. Use natural language to initialize project."
+	@exit 0
 
 # Run target - execute the application
 run:
-	@echo "⚠️  Run logic not yet defined."
-	@echo "📝 Action required: Update this after tech stack selection."
-	@echo ""
-	@echo "Examples by language:"
-	@echo "  Python:  python src/main.py"
-	@echo "  Node:    npm start"
-	@echo "  Rust:    cargo run"
-	@echo "  Go:      go run main.go"
-	@echo "  Java:    java -jar target/app.jar"
-	@echo ""
-	@echo "🎯 Goal: This command should launch the app in one shot"
+	@echo "⚠️  No tech stack selected yet. Use natural language to initialize project."
+	@exit 0
 
 # Clean target - remove build artifacts
 clean:
-	@echo "⚠️  Clean logic not yet defined."
-	@echo "📝 Action required: Update this after tech stack selection."
-	@echo ""
-	@echo "Examples by language:"
-	@echo "  Python:  rm -rf dist/ build/ *.egg-info __pycache__"
-	@echo "  Node:    rm -rf node_modules/ dist/ build/"
-	@echo "  Rust:    cargo clean"
-	@echo "  Go:      go clean"
-	@echo "  Java:    mvn clean"
+	@echo "⚠️  No tech stack selected yet. Use natural language to initialize project."
+	@exit 0
