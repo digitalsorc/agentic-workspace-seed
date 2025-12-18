@@ -118,6 +118,143 @@ Every AI agent **MUST** perform these steps before ending a session:
 
 ---
 
+## 🚀 Executable & Deployment Mandates
+
+This section enforces **"Instant Testability"** and **"Auto-Builds"** for all projects. These are non-negotiable requirements.
+
+### Universal Control Panel (Makefile)
+
+The repository includes a `Makefile` that serves as a **standard interface layer**. This ensures consistency regardless of the underlying technology stack.
+
+**Available targets:**
+- `make setup` - Install dependencies and set up environment
+- `make test` - Run all tests
+- `make build` - Build/compile the project
+- `make run` - Run the application
+- `make clean` - Clean build artifacts
+
+**Current Status:** Placeholders are in place until tech stack is selected.
+
+### Deployment and Delivery Rules
+
+#### Rule 1: Immediate Makefile Implementation
+**Upon selecting a tech stack, YOU MUST immediately replace the Makefile placeholders with actual commands for that language.**
+
+Examples:
+- **Python:** `pip install -r requirements.txt`, `pytest tests/`, `python src/main.py`
+- **Node.js:** `npm install`, `npm test`, `npm run build`, `npm start`
+- **Rust:** `cargo fetch`, `cargo test`, `cargo build --release`, `cargo run`
+- **Go:** `go mod download`, `go test ./...`, `go build -o bin/app`, `./bin/app`
+- **Java:** `mvn install`, `mvn test`, `mvn package`, `java -jar target/app.jar`
+
+**Action Items:**
+1. Update each Makefile target with the appropriate commands
+2. Test that `make setup && make test && make build && make run` works end-to-end
+3. Document any prerequisites in README.md
+4. Update `active_context.md` to reflect tech stack implementation
+
+#### Rule 2: Standalone Artifact Requirement
+**Every project MUST produce a standalone, deployable artifact.**
+
+This ensures the project can be deployed anywhere without manual dependency management.
+
+**Implementation by project type:**
+
+- **Script/CLI Tool:**
+  - Wrap in a Dockerfile: `docker build -t app . && docker run app`
+  - OR use packaging tools: PyInstaller (Python), pkg (Node), cargo build --release (Rust)
+  
+- **Web Application:**
+  - Provide `docker-compose.yml` for full-stack setup
+  - OR provide Dockerfile with clear `make run` integration
+  
+- **Library/Package:**
+  - Build distributable package (wheel, npm package, crate, JAR)
+  - Document installation and usage in README.md
+
+- **Microservice:**
+  - Containerize with Dockerfile
+  - Provide kubernetes manifests or docker-compose.yml
+  - Include health check endpoints
+
+**Deliverables:**
+- If Dockerfile: Must build and run with `docker build` and `docker run`
+- If docker-compose: Must start with `docker-compose up`
+- Document deployment in `docs/DEPLOYMENT.md`
+
+#### Rule 3: One-Shot Execution
+**The `make run` command must always launch the application in a one-shot command without manual setup.**
+
+**Requirements:**
+- No manual dependency installation required before `make run`
+- No manual configuration file editing required
+- Environment variables documented and have sensible defaults
+- Database migrations run automatically if needed
+- `make setup` handles all prerequisites
+
+**Good Examples:**
+```bash
+# User runs this once
+make setup
+
+# Then this always works
+make run
+```
+
+**Bad Examples (DO NOT DO THIS):**
+```bash
+# ❌ Requires manual steps
+pip install -r requirements.txt
+export API_KEY=xyz
+python migrate.py
+python app.py
+```
+
+**Implementation Checklist:**
+- [ ] `make setup` installs all dependencies
+- [ ] `make setup` creates config files with defaults
+- [ ] `make run` checks for setup completion
+- [ ] `make run` executes the app in one command
+- [ ] Environment variables have defaults or `.env.example` exists
+- [ ] README documents any required secrets/API keys
+
+### Continuous Integration (CI) Requirements
+
+The repository includes `.github/workflows/ci_pipeline.yml` that automatically runs on every push.
+
+**Current CI Flow:**
+1. Checkout code
+2. Run `make setup`
+3. Run `make test`
+4. Run `make build`
+
+**After Tech Stack Implementation:**
+1. Remove `continue-on-error: true` flags from CI workflow
+2. Ensure all tests pass in CI
+3. Failed builds must block merges
+4. Update CI workflow if additional steps are needed (linting, security scans, etc.)
+
+**CI Expansion Options:**
+- Add `make lint` target and call it in CI
+- Add security scanning (e.g., Snyk, CodeQL)
+- Add coverage reporting
+- Add deployment steps for staging/production
+- Add container image building and pushing
+
+### Enforcement
+
+These rules are **mandatory** and will be checked:
+
+1. ✅ Makefile exists with all targets implemented (not placeholders)
+2. ✅ `make setup && make test && make build && make run` works end-to-end
+3. ✅ CI pipeline passes on all commits
+4. ✅ Standalone artifact is producible
+5. ✅ Deployment documentation exists
+
+**Violations will require immediate remediation before proceeding with new features.**
+
+---
+
 ## ⚠️ What NOT to Do
 
 - **Don't skip reading active_context.md** - You'll miss critical context

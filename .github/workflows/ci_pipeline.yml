@@ -1,0 +1,63 @@
+name: CI Pipeline - Auto Build & Test
+
+# This workflow ensures every commit is automatically tested and built
+# Enforces "Instant Testability" from Day 1 of the project
+
+on:
+  push:
+    branches: [ "**" ]  # Trigger on all branches
+  pull_request:
+    branches: [ "**" ]
+
+jobs:
+  build-and-test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Display workflow info
+      run: |
+        echo "═══════════════════════════════════════════════════════════"
+        echo "  AI-Agentic Workspace - Continuous Integration"
+        echo "═══════════════════════════════════════════════════════════"
+        echo ""
+        echo "Branch: ${{ github.ref_name }}"
+        echo "Commit: ${{ github.sha }}"
+        echo "Triggered by: ${{ github.event_name }}"
+        echo ""
+    
+    # Setup phase - will be customized based on tech stack
+    - name: Run setup
+      run: make setup
+      continue-on-error: true  # Allow to fail until tech stack is implemented
+    
+    # Test phase - ensures code quality
+    - name: Run tests
+      run: make test
+      continue-on-error: true  # Allow to fail until tech stack is implemented
+    
+    # Build phase - ensures code compiles/builds
+    - name: Run build
+      run: make build
+      continue-on-error: true  # Allow to fail until tech stack is implemented
+    
+    - name: CI Status
+      run: |
+        echo ""
+        echo "═══════════════════════════════════════════════════════════"
+        echo "  CI Pipeline Status"
+        echo "═══════════════════════════════════════════════════════════"
+        echo ""
+        echo "⚠️  NOTE: CI steps currently use placeholders"
+        echo "📝 Action required: Update Makefile after tech stack selection"
+        echo ""
+        echo "Once tech stack is implemented:"
+        echo "  - Remove 'continue-on-error: true' flags"
+        echo "  - CI will enforce build and test success"
+        echo "  - Failed builds will block merges"
+        echo ""
+        echo "See docs/AGENT_RULES.md for deployment mandates"
+        echo "═══════════════════════════════════════════════════════════"

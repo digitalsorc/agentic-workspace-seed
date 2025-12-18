@@ -13,7 +13,13 @@ This is a **Natural Language-driven (NL-driven) project** designed for purely AI
 
 ```
 agentic-workspace-seed/
+├── .github/
+│   └── workflows/
+│       └── ci_pipeline.yml    # CI/CD automation
 ├── docs/                      # Requirements and documentation
+│   ├── AGENT_RULES.md        # Rules for AI agents
+│   └── .gitkeep              # Placeholder
+├── Makefile                   # Universal control panel
 ├── active_context.md          # Current state, tech stack, and next steps
 ├── tech_stack_decisions.md    # Technology decision log
 └── README.md                  # This file
@@ -36,9 +42,12 @@ agentic-workspace-seed/
 
 ## Key Files
 
+- **`Makefile`**: Universal control panel providing standard interface (setup/test/build/run/clean)
 - **`active_context.md`**: Living document tracking current state, active decisions, and immediate next steps
 - **`tech_stack_decisions.md`**: Chronological log of all technical decisions with rationale
+- **`docs/AGENT_RULES.md`**: Mandatory rules for AI agents, including deployment mandates
 - **`docs/`**: Requirements, specifications, and project documentation
+- **`.github/workflows/ci_pipeline.yml`**: Automated CI/CD pipeline for instant testability
 
 ## Development Workflow
 
@@ -46,7 +55,32 @@ agentic-workspace-seed/
 2. **Planning Phase**: AI agents propose technical approaches
 3. **Decision Phase**: Document technology choices with rationale
 4. **Implementation Phase**: AI agents generate code based on specifications
-5. **Iteration Phase**: Refine based on feedback, updating context continuously
+5. **Testing Phase**: Automated CI runs `make test` on every commit
+6. **Build Phase**: Automated CI runs `make build` to verify compilation
+7. **Iteration Phase**: Refine based on feedback, updating context continuously
+
+## Universal Control Panel (Makefile)
+
+This repository enforces **"Instant Testability"** and **"Auto-Builds"** through a standard Makefile interface:
+
+```bash
+make setup    # Install dependencies
+make test     # Run tests
+make build    # Build the project
+make run      # Run the application
+make clean    # Clean artifacts
+```
+
+These commands work consistently regardless of the underlying technology stack (Python, Node, Rust, Go, etc.). The Makefile contains placeholders until a tech stack is selected, at which point AI agents must update it with actual implementation.
+
+## Continuous Integration
+
+Every push triggers automated testing via GitHub Actions:
+- Runs `make setup` to prepare environment
+- Runs `make test` to validate code quality
+- Runs `make build` to ensure compilation succeeds
+
+This ensures that breaking changes are caught immediately.
 
 ## Contributing
 

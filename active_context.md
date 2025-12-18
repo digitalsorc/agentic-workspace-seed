@@ -25,9 +25,13 @@
 ### Repository Structure
 ```
 agentic-workspace-seed/
+├── .github/
+│   └── workflows/
+│       └── ci_pipeline.yml    # CI/CD automation (make test & build)
 ├── docs/                      # Requirements and documentation
-│   ├── AGENT_RULES.md        # Rules for AI agents
+│   ├── AGENT_RULES.md        # Rules for AI agents (includes deployment mandates)
 │   └── .gitkeep              # Placeholder
+├── Makefile                   # Universal control panel (setup/test/build/run)
 ├── active_context.md          # This file - current state tracker
 ├── tech_stack_decisions.md    # Technology decision log
 └── README.md                  # Project overview
@@ -39,15 +43,24 @@ agentic-workspace-seed/
 - Git for version control
 - Natural language for specifications
 
+**Build & CI/CD Infrastructure:**
+- Makefile as universal control panel (setup/test/build/run/clean)
+- GitHub Actions for automated CI/CD pipeline
+- Enforces "Instant Testability" and "Auto-Builds" from Day 1
+
 **Development Stack:**
 - To be determined based on requirements
 - Will be documented in tech_stack_decisions.md when chosen
+- Makefile targets will be updated upon tech stack selection
 
 ### Architecture Decisions
 - Documentation-first approach
 - High-context retention priority
 - AI agents as primary developers
 - Natural language requirements drive implementation
+- **Instant Testability:** CI pipeline enforces automated testing from Day 1
+- **Auto-Builds:** Every commit triggers build verification via GitHub Actions
+- **Universal Interface:** Makefile provides consistent commands across all tech stacks
 
 ---
 
@@ -56,6 +69,8 @@ agentic-workspace-seed/
 ### Immediate Tasks
 - [ ] Define first project requirements in `docs/`
 - [ ] Determine initial technology stack based on project needs
+- [ ] **Update Makefile with actual commands** (upon tech stack selection)
+- [ ] **Remove CI continue-on-error flags** (after Makefile implementation)
 - [ ] Document first architectural decisions
 - [ ] Set up development environment (once stack is chosen)
 
@@ -72,6 +87,9 @@ agentic-workspace-seed/
 - [x] Write comprehensive README
 - [x] Create docs/ folder
 - [x] Define AGENT_RULES.md
+- [x] Create Makefile with universal control panel
+- [x] Set up CI/CD pipeline (.github/workflows/ci_pipeline.yml)
+- [x] Add deployment mandates to AGENT_RULES.md
 
 ---
 
@@ -82,6 +100,9 @@ agentic-workspace-seed/
 - **NL-Driven:** Natural language requirements precede technical implementation
 - **AI-First:** AI agents are the primary developers, humans provide requirements
 - **Documentation Over Code:** Until requirements are clear, no code should be generated
+- **Instant Testability:** Every commit is automatically tested via CI
+- **Universal Interface:** `make setup/test/build/run` works regardless of tech stack
+- **One-Shot Execution:** `make run` always launches the app without manual setup
 
 ### Current Constraints
 - No specific project requirements defined yet

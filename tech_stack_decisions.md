@@ -10,6 +10,8 @@ This document logs all technology stack decisions made during the project lifecy
 | Date | Decision | Alternatives Considered | Reasoning |
 |------|----------|------------------------|-----------|
 | 2025-12-18 | Adopt documentation-first, context-rich repository structure | Traditional code-first approach, Monolithic documentation file | AI agents need persistent context across sessions; separate files allow better organization; clear separation between planning and implementation; decision history enables better future choices |
+| 2025-12-18 | Implement Makefile as universal control panel with standard targets (setup/test/build/run/clean) | Language-specific scripts (package.json, setup.py, etc.), IDE-specific configurations, Manual command documentation | Ensures consistent interface regardless of tech stack; enables instant testability; simplifies CI/CD; reduces cognitive load for developers and AI agents; industry standard for build automation |
+| 2025-12-18 | Establish GitHub Actions CI pipeline calling Makefile targets | Jenkins, GitLab CI, CircleCI, Travis CI, No CI | GitHub-native solution for GitHub repositories; free for public repos; simple integration with make targets; enforces auto-builds from Day 1; immediate feedback on breaking changes |
 | | | | |
 
 ---
