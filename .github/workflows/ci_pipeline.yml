@@ -1,0 +1,65 @@
+name: CI Pipeline - Auto Build & Test
+
+# This workflow ensures every commit is automatically tested and built
+# Enforces "Instant Testability" from Day 1 of the project
+
+on:
+  push:
+    branches: [ "**" ]  # Trigger on all branches
+  pull_request:
+    branches: [ "**" ]
+
+jobs:
+  build-and-test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    
+    # Explicit permissions for security - limit GITHUB_TOKEN scope
+    permissions:
+      contents: read
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Display workflow info
+      run: |
+        echo "═══════════════════════════════════════════════════════════"
+        echo "  AI-Agentic Workspace - Continuous Integration"
+        echo "═══════════════════════════════════════════════════════════"
+        echo ""
+        echo "Branch: ${{ github.ref_name }}"
+        echo "Commit: ${{ github.sha }}"
+        echo "Triggered by: ${{ github.event_name }}"
+        echo ""
+    
+    # Setup phase - will be customized based on tech stack
+    - name: Run setup
+      run: make setup
+    
+    # Test phase - ensures code quality
+    - name: Run tests
+      run: make test
+    
+    # Build phase - ensures code compiles/builds
+    - name: Run build
+      run: make build
+    
+    - name: CI Status
+      run: |
+        echo ""
+        echo "═══════════════════════════════════════════════════════════"
+        echo "  CI Pipeline Status"
+        echo "═══════════════════════════════════════════════════════════"
+        echo ""
+        echo "✅ CI Pipeline: PASSING"
+        echo ""
+        echo "ℹ️  Note: Makefile targets currently return placeholders"
+        echo "📝 Next: Define requirements and select tech stack"
+        echo ""
+        echo "Once tech stack is implemented:"
+        echo "  - Update Makefile targets with actual commands"
+        echo "  - CI will enforce real build and test success"
+        echo ""
+        echo "See docs/AGENT_RULES.md for deployment mandates"
+        echo "═══════════════════════════════════════════════════════════"
